@@ -1,0 +1,44 @@
+
+.context-menu { 
+    font-family: 'Montserrat', sans-serif;
+    position: absolute; 
+    top: 0%;
+    left: 0%;
+    text-align: center; 
+    /* background: rgb(255, 255, 255);  */
+    background: #2E294E;
+    border: 2px solid #2A97C6; 
+    z-index: 5;
+    color: white;
+    font-weight: bolder;
+    border-radius: 10px;
+} 
+
+.context-menu ul { 
+    padding: 0px; 
+    margin: 0px; 
+    min-width: 130px; 
+    list-style: none; 
+} 
+
+.context-menu ul li { 
+    padding-bottom: 7px; 
+    padding-top: 7px; 
+    border-bottom: 1px solid #2A97C6;
+    border-radius: 5px;
+    cursor: pointer;
+} 
+
+.context-menu ul li a { 
+    text-decoration: none; 
+    /* color: red;  */
+} 
+
+.context-menu ul li:hover { 
+    background: rgb(107 106 236 / 65%); 
+} 
+
+.course{
+    z-index: 1;
+}
+

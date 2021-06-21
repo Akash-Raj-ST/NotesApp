@@ -1,0 +1,96 @@
+
+:root{
+    --error-col:#f8d7da;
+    --error-col-hover:#ec9199;
+    --error-bord:#f5c2c7;
+    --error-text:#842029;
+    --warning-col:#fff3cd;
+    --warning-col-hover:#f5dd8e;
+    --warn-bord:#ffecb5;
+    --warn-text:#664d03;
+    --succ-col:#d1e7dd;
+    --succ-col-hover:#7deebb;
+    --succ-bord:#badbcc;
+    --succ-text:#0f5132;
+    --message-border:3px solid transparent;
+}
+/* Error Handling */
+.alerts{
+    z-index:3;
+    position: absolute;
+    top: 15%;
+    right: 0%;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 500px;
+}
+.error{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: var(--error-col);
+    color: var(--error-text);
+    border-left: 10px solid red;
+}
+
+.error-message{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.error h4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0%;
+}
+.error img{
+    cursor: pointer;
+    margin: 0 15px;
+}
+
+/* for danger */
+.danger{
+    background-color: var(--error-col);
+    color: var(--error-text);
+    border-left: 10px solid red;
+}
+
+.danger:hover{
+    background-color:var(--error-col-hover);
+}
+
+ /* for warning  */
+.warning{
+    background-color: var(--warning-col);
+    color: var(--warn-text);
+    border-left: 10px solid darkorange;
+}
+
+.warning:hover{
+    background-color:var(--warning-col-hover);
+}
+
+/* for info */
+.success{
+    background-color: var(--succ-col);
+    color: var(--succ-text);
+    border-left: 10px solid green;
+}
+
+.success:hover{
+    background-color:var(--succ-col-hover);
+}
+
+@media only screen and (max-width:640px){
+    .alerts{
+        width: 80%;
+    }
+}

@@ -1,0 +1,176 @@
+
+:root{
+    --border_rad:20px;
+    
+}
+
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Montserrat';
+}
+
+body{
+    height: 87.3vh;
+    width: 100%;
+}
+
+button{
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+}
+
+.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: fit-content;
+    width: 100%;
+    /* #1e1b33 */
+    background-color: #1e1b33;
+    box-shadow: -3px -16px 54px 17px rgba(54,52,237,0.81);
+    margin-bottom: 2px;
+}
+
+#right-form input[type="text"]{
+    width: 130px;
+    height: 48px;
+    padding-left: 20px;
+    margin: 20px 10px;
+    margin-right: -12px;
+}
+
+.top button{
+    border: none;
+    border-radius: 15px;
+    width: fit-content;
+    background-color: #483EDE;
+    color: white;
+    font-size: 16px;
+    font-style: normal;
+    margin: 20px 10px;
+    padding: 15px;
+}
+
+.bottom{
+    /* #2e294e */
+    background-color:#2e294e;
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    position: relative;
+    z-index:2;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+}
+
+#title-img{
+    height: 550px;
+    width: 500px;
+}
+
+#title{
+    font-weight: normal;
+    font-size: 70px;
+}
+#slogan1{
+    font-weight: normal;
+    font-size: 20px;
+    text-decoration: underline;
+    margin-bottom: 25px;
+}
+
+#slogan2{
+    font-size: 25px;
+}
+#ini-dia{
+    font-weight: normal;
+    font-size: 22px;
+    margin: 15px;
+    margin-left: 0%;
+}
+
+.intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40%;
+    margin: 25px 0;
+}
+.login-form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form form input[type=text],input[type='password'],#right-form input[type="text"]{
+    border: 1px solid #311B88;
+    border-radius: var(--border_rad);
+    outline: none;   
+    font-size: 22px;
+    color: #483EDE;   
+    font-weight: bold;
+}
+
+.login-form form input[type=text],input[type='password']{
+    width: 300px;
+    height: 50px;
+    padding-left: 20px;
+    margin: 3px;
+}
+
+
+.login-form input[type=text]:focus::placeholder,
+input[type=password]:focus::placeholder,
+#right-form input[type="text"]:focus::placeholder {
+    color: transparent;
+}
+
+.login-form button{
+    background-color: #483EDE;
+    border: 1px solid #311B88;
+    border-radius:15px;
+    width: 150px;
+    font-size: 25px;
+    margin: 10px 0;
+    padding: 10px;
+    margin-bottom: 25px;
+    align-items: center;
+    color: white;
+}
+
+.login-form button:hover,.top button:hover{
+    background-color: white;
+    color: #483EDE;
+    font-weight: bold;
+}
+
+.login-form input[type=text]::placeholder,input[type=password]::placeholder,
+#right-form input[type="text"]::placeholder{
+    color: #311B88;
+    font-size: 15px;
+}
+
+
+/*  */
+
+@media only screen and (max-width:400px){
+    #title{
+        font-size: 65px;
+    }
+}
+
+@media only screen and (max-width:900px){
+    #title-img{
+        display: none;
+    }
+    
+}

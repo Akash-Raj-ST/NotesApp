@@ -1,0 +1,184 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rightclick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/scroll.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
+
+    <link rel="icon" type="image" href="{% static 'img/notes_blue.png' %}" sizes="16x16">
+    
+    <title>Notes App</title>
+</head>
+<body onclick="body_click()">
+    {% include 'error.html' %}
+    <div class="alerts" style="display: block;">
+        <div>
+            <div class="success_js error success" style="display: none;">
+                <div class="error-message">
+                    <img src="{%static 'img/success_img.svg' %}" alt="Success">
+                    <h4 class="text_msg"></h4>
+                </div>              
+                <img src="{%static 'img/close.svg' %}" alt="close" onclick="clear_error(this)">
+            </div>
+        </div>
+    </div>
+    <div class="top">
+        <div class="name_div">
+            <img src= {% static 'img/copy.png' %} onclick='copy_to_clip()' class="copy_icon" alt='copy'>
+            <h2 class="name" onclick='switch_name("{{user.name}}","{{user.code}}");event.stopPropagation();'>{{user.name}}</h2>
+        </div>
+        <a href="logout">
+            <button class="logout">Log out</button>
+            <img class="logout_icon" src="{% static 'img/logout.svg' %}" alt="logout">
+        </a>
+    </div>
+    <div class="main">
+    {% for sect_id,sect,boxes in sections %}
+    <section class="folder">
+        
+        <div class='head-sect'>
+            <h3 class="desc" onclick="open_sect(this);event.stopPropagation();" style="text-decoration: underline;">{{sect}}</h3>
+                <div class="sect-icons" style="display:none">
+                    <a onclick="open_section_edit(this);event.stopPropagation();">
+                        <img src="{% static 'img/edit-white.svg' %}" alt="del">
+                    </a>
+                    <a class="sect-del" href="section_delete/{{sect_id}}" >
+                        <img src="{% static 'img/trash.svg' %}" alt="del">
+                    </a>
+                </div>
+        </div>
+        <div id="open-section-edit" style="display:none">
+            <form action="section_edit/{{sect_id}}" method="POST" onclick="event.stopPropagation();">
+            {% csrf_token %}
+                <input type="text" name="section" value="{{sect}}">
+                <button  type="submit">Edit</button>
+            </form>
+
+        </div> 
+        <div class="courses">
+            {% for box_id,box in boxes%}
+            <div class="box">
+                <a href="view/{{box_id}}/"> 
+                    <button onmousedown="right_click_course(this,event,'{{holder}}');event.preventDefault();" type="submit" class="course-box">   
+                        <h3 class="course-name" name="course_name">{{box}}</h3>                    
+                    </button> 
+                </a> 
+                <div id="contextMenu" onclick="event.stopPropagation();" class="context-menu" style="display: none"> 
+                    <ul> 
+                        
+                        <li onclick="open_course_edit(this);event.stopPropagation();" class="course_edit">Edit
+                            <img src="{% static 'img/edit-white.svg' %}" class="edit-icon" alt="edit">
+                        </li>
+
+                        <div id="open-course-edit" style="display:none">
+                            <form action="box_edit/{{box_id}}" method="POST">
+                            {% csrf_token %}
+                                <input type="text" name="box" value='{{box}}'>
+                                <input type="text" name="sect_id" value='{{sect_id}}' hidden>
+                                <button  type="submit">Edit</button>
+                            </form>
+                        </div> 
+
+                        <a class="del-popup" href="box_delete/{{box_id}}">
+                            <li >Delete
+                                <img src="{% static 'img/trash.svg' %}" class="delete icon" alt="del">
+                            </li>
+                         </a>
+                    </ul> 
+                </div>              
+            </div>    
+            {% empty %}
+                <h3 class="sect_empt_msg" style="display:none;">section is empty</h3>        
+            {% endfor %}
+                <button type="submit" onclick="open_add_course(this);event.stopPropagation();" class="course">
+                        <div class="plus radius"></div>
+                </button> 
+        </div>
+            <div id="open-add-course" style="display:none">
+                <form action="box_create/{{sect_id}}" method="POST" onclick="event.stopPropagation();">
+                {% csrf_token %}
+                    <label for="box">Box Name:</label>
+                    <input type="text" name="box">
+                    <button type="submit">ADD</button>
+                </form>
+            </div>
+    </section>
+    {% empty %}
+            <div class="welcome">
+                <img class="web_img" src= {% static 'img/welcome.svg' %} alt="Welcome">
+                <img class="mob_img" src= {% static 'img/welcome_mob.svg' %} alt="Welcome">
+                <h5 class="msg">Click on Add Section to get started !!!</h5>
+            </div>
+    {% endfor %}
+    </div>
+    <div class="bottom">
+         
+        <div id="open-form-sect" style="display:none" onclick="event.stopPropagation();">
+            <form action="section_create" method="POST">
+            {% csrf_token %}
+                <label for="section">Section Name: </label>
+                <input type="text" name="section">
+                <button  type="submit">ADD</button>
+            </form>
+        </div> 
+
+        <button type="submit" onclick="open_form_sect();event.stopPropagation();" class="add_sect" style="display:block;">
+            <h3>Add Section</h3>
+        </button>
+    
+
+    </div>
+
+    
+    {% if not holder%}
+        <script>
+            function hide_all(arr){
+                for(i=0;i<arr.length;i++){
+                    for(j=0;j<arr[i].length;j++)
+                        arr[i][j].style.display = 'none';
+                }
+            }
+            function hide(arr){
+                for(i=0;i<arr.length;i++){
+                    arr[i].style.display = 'none';
+                }
+            }
+            var add_sect = document.querySelector('.bottom');
+            var add_box = document.querySelectorAll('.course');
+
+            hide([add_sect]);
+            hide_all([add_box]);
+
+            var ele=document.querySelectorAll('.desc');
+
+            for(i=0;i<ele.length;i++){
+                ele[i].style.cursor = 'default';
+                ele[i].setAttribute('onclick','event.stopPropagation()')
+            }
+                
+            var name_ = document.querySelector('.name');
+            name_.innerHTML = 'Guest';
+            name_.setAttribute('onclick','switch_name("Guest","{{user.code}}")')
+
+            var msg_ = document.querySelector('.msg');
+            if(msg_) msg_.innerHTML = "Holder hasn't started yet";
+
+            var sect_emp_msg = document.querySelectorAll('.sect_empt_msg');
+            for(i=0;i<sect_emp_msg.length;i++){
+                sect_emp_msg[i].style.display = 'block';
+            }
+        </script>
+    {% endif %}
+    
+    <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/error.js' %}"></script>
+
+</body>
+</html>

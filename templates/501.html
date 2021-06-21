@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/404.css' %}">
+    <title>500</title>
+</head>
+<body>
+    <main>
+        <h2 class="head-1">Oops!!!</h2>
+        <img src="{% static 'img/404_web.svg' %}" alt="Not Found" class="not_found_img_web">
+        <img src="{% static 'img/404_mob.svg' %}" alt="Not Found" class="not_found_img_mob">
+        <h2 class="head-2">PAGE NOT FOUND</h2>
+        <h2 class="head-3">Want to go to Login Page?</h2>
+        <a href="/" class="redirect_link">LOGIN PAGE</a>
+    </main>
+        
+</body>
+</html>

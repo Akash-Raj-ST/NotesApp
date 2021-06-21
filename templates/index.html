@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/index.css' %}">
+    <link rel="stylesheet" href="{%static 'css/scroll.css' %}">
+    <link rel="stylesheet" href="{%static 'css/font.css' %}">
+    <link rel="stylesheet" href="{%static 'css/error.css' %}">
+    <link rel="shortcut icon" type="image" href="{% static 'img/notes_blue.png' %}">
+    <title>Notes App</title>
+</head>
+<body>
+    {% include 'error.html' %}
+   
+    <!-- top -->
+    <section class="top">
+        <a href="register">
+            <button class="register">Register</button>
+        </a>
+       <button onclick="open_code_form()" class="code" >Use Code</button> 
+        <div id="right-form" style="display: none" >
+            <form action="code_login" method="POST">
+                {% csrf_token %}
+                <input type="text" class="code-field" name="code" autocomplete="off" placeholder="Enter code">
+                <button type="submit">USE</button>
+            </form>
+        </div> 
+            
+    </section>
+
+    <!-- left -->
+    <div class="bottom">
+        <section class="left">
+            <div class="intro">
+                <div>
+                    <h1 id='title'>Notes App</h1>
+                    <h3 id='slogan1'>All your notes in one place</h3>
+                </div>              
+                <p id='slogan2'>Flex your Notes,<br>
+                    Share your Notes.</p>
+            </div>
+            <div class="login-form">
+                <h4 id="ini-dia">Ready to Read?</h4>
+                <form action="/" method="POST">
+                {% csrf_token %}
+                    <div>
+                        <input type="text" class="username-field" name="user_name" autocomplete="off" placeholder="Enter your username..." required>
+                        <br>
+                        <input type="password" class="password-field" name="password" autocomplete="off" placeholder="Enter your Password..." required>
+                        <br>   
+                    </div>                                         
+                    <button type="submit">VIEW</button>
+                </form> 
+            </div>            
+            
+        </section>
+        <img id='title-img' src="{% static 'img/groupChat.svg' %}" alt="ICON">
+    </div>
+       
+    
+
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/error.js' %}"></script>
+</body>
+</html>

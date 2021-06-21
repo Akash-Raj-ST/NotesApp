@@ -1,0 +1,47 @@
+{% load static %}
+
+{% block content %}
+    <div class="alerts" style="display: block;">
+    {% if messages %}
+
+            {% for message in messages%}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div>
+                        <div class="error danger">
+                            <div class="error-message">
+                                <img src="{%static 'img/danger_img.svg' %}" alt="Error">
+                                <h4 >{{message}}</h4>
+                            </div>              
+                            <img src="{%static 'img/close.svg' %}" alt="close" onclick="clear_error(this)">
+                        </div>
+                    </div>
+                {% endif%}
+
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                    <div>
+                        <div class="error warning">
+                            <div class="error-message">
+                                <img src="{%static 'img/warning.svg' %}" alt="Warning">
+                                <h4 >{{message}}</h4>
+                            </div>              
+                            <img src="{%static 'img/close.svg' %}" alt="close" onclick="clear_error(this)">
+                        </div>
+                    </div>
+                {% endif%}
+
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div>
+                        <div class="error success">
+                            <div class="error-message">
+                                <img src="{%static 'img/success_img.svg' %}" alt="Success">
+                                <h4 >{{message}}</h4>
+                            </div>              
+                            <img src="{%static 'img/close.svg' %}" alt="close" onclick="clear_error(this)">
+                        </div>
+                    </div>
+                {% endif%}
+            {% endfor %}
+    {% endif %}
+    </div>
+
+{% endblock%}

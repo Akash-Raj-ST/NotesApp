@@ -1,0 +1,127 @@
+
+.notes-section{
+    z-index: 2;
+    background-color: rgb(0, 174, 255);
+    position: absolute;
+    
+    background-color: #423b6e;
+    font-family: 'Montserrat';
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    right: 0%;
+    top:15%;
+    border-radius: 25px 0px 0px 25px;
+    box-shadow: rgba(0, 0, 0, 0.466) 0px 3px 8px;
+    animation-name: notes;
+    animation-duration: 0.3s;
+}
+
+.heading{
+    color: white;
+    font-size:25px;
+    margin-top: 15px;
+}
+
+.container{   
+    height:80%;
+    width: 80%;
+    border: 1px solid white;
+    border-radius: 15px;
+    margin: 30px;
+    padding: 15px;    
+}
+
+.container form{
+    color: aliceblue;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 20px;
+}
+
+.pdf-name-input input[type='text']{
+    border: none;
+    border-radius: 15px;
+    height: 40px;
+    width: 95%;
+    margin-top: 15px;
+    outline: none;
+    padding-left: 20px;
+    font-size: 20px;
+    color: black;
+}
+
+.pdf-name-input input[type='text']::placeholder{
+    color:rgba(7, 7, 7, 0.411);
+    font-size: 15px;
+}
+
+.pdf-name-input input[type='text']:focus::placeholder{
+    color:transparent;
+}
+
+.file-input{
+    height: 50px;
+    width: 100%;
+    display: flex;
+}
+
+.file-input input[type="file"]{
+    outline: none;
+    margin: auto;
+}
+
+.file-input input[type=file]::file-selector-button{
+    background-color: #2997C6 ;
+    height: 40px;
+    width: 150px;
+    outline: none;
+    border: none;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 20px;
+} 
+
+.file-input input[type=file]:hover::file-selector-button{
+    background-color: rgb(61, 61, 161);
+}
+
+.file-input label{
+    display: none;
+    height: 30px;
+    width: 150px;
+    padding: 10px;
+    border-radius:15px;
+    margin: auto;
+    background-color: rgb(62, 18, 221);
+    text-align: center;
+}
+
+
+.notes-section button{
+    outline: none;
+    border: none;
+    background-color: #2997C6;
+    color: white;
+    height: 50px !important;
+    width:  100% !important;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: rgb(61, 61, 161);
+}
+
+@keyframes notes{
+    from{opacity: 0%;}
+    to{opacity: 100%;}
+}

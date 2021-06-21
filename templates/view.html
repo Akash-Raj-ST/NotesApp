@@ -1,0 +1,127 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/view.css'%}">
+    <link rel="stylesheet" href="{% static 'css/addFiles.css'%}">
+    <link rel="stylesheet" href="{% static 'css/scroll.css'%}">
+    <link rel="stylesheet" href="{% static 'css/font.css'%}">
+    <link rel="stylesheet" href="{% static 'css/error.css'%}">
+
+    <link rel="shortcut icon" type="image" href="{% static 'img/notes_blue.png'%}">
+
+    <title>Notes App</title>
+</head>
+<body onclick="body_click()">
+    <!-- error messages -->
+    {% include 'error.html' %}
+    
+    <!-- top -->
+    <div class="top">
+        <a  href="{%url "home" %}">
+            <img class="home" src="{% static 'img/home-blue.svg'%}" alt="home">
+        </a>
+            <a onclick="open_notes();event.stopPropagation()"; class="add-notes" href="#">
+                <button>
+                    <img src="{% static 'img/plus.png'%}" alt="add">
+                    <h4>Add Notes</h4>
+                </button>
+            </a>
+    </div>
+
+    <!-- Headings -->
+    <h3 class="section">{{name.section}}</h3>
+    <h3 class="course">{{name.box}}</h3>
+
+    
+    <!-- all files -->
+    <div class="all-files">
+        {% for file in files%}
+        <div>
+            <div class="container-file">
+                <a class="text-box" href="{{file.file_url}}" target="_blank">
+                    <h4>{{file.file_name}}</h4>
+                </a>
+                
+                <div class="tools">
+                    <a href="{{file.file_url}}" class="dwnld" target="_blank" download>
+                        <img src="{% static 'img/download.svg' %}" alt="download">
+                    </a>
+                        <a href="#" class="pdf-edit" onclick="open_pdf_edit(this);event.stopPropagation();">
+                            <img src="{% static 'img/edit.svg' %}" alt="edit">
+                        </a>
+                        <a href="file_delete/{{file.file_id}}" class="pdf-delete">
+                            <img src="{% static 'img/delete.svg' %}" alt="delete">
+                        </a>
+                </div>           
+            </div>
+                <form action="file_edit/{{file.file_id}}" method="POST" id="open-pdfedit-form" style="display:none" onclick="event.stopPropagation();">
+                    {% csrf_token %}
+                    Pdf Name: <input type="text" name="file_name" value='{{file.file_name}}'>
+                    <button  type="submit">Edit</button>
+                </form>
+        </div>
+        {% empty %}
+        <div class="empty_box">
+            <img  src={% static 'img/empty.svg' %} alt="EMPTY" />
+            <h4>Empty!!!</h4>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    <!-- Pop-up -->
+    <div class="notes-section" style="display: none;" onclick="event.stopPropagation();">
+        <h3 class="heading">Add File</h3>
+        <div class="container">
+            <form action="file_create" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class='pdf-name-input'>
+                    <label for="file">Enter File name:</label>
+                    <br>
+                    <input class='pdf-name-input' type="text" name="file" placeholder="Optional">
+                </div>
+                <div class="file-input">
+                    <label for="files">Choose a file</label>
+                    {% comment %} change to required {% endcomment %}
+                    <input type="file" name='files'  multiple>
+                </div>    
+                <button type="submit">ADD FILE</button>
+            </form>
+        </div>    
+    </div>
+
+    {% if not holder%}
+        <script>
+           
+            function hide(arr){
+                for(i=0;i<arr.length;i++){
+                    arr[i].style.display = 'none';
+                }
+            }
+
+            function hide_all(arr){
+                for(i=0;i<arr.length;i++){
+                    for(j=0;j<arr[i].length;j++)
+                        arr[i][j].style.display = 'none';
+                }
+            }
+            
+            var add_notes = document.querySelector('.add-notes');
+            var pdf_edit = document.querySelectorAll('.pdf-edit');
+            var pdf_del = document.querySelectorAll('.pdf-delete');
+            
+            hide([add_notes]);
+            hide_all([pdf_edit,pdf_del]);
+
+        </script>
+    {% endif %}
+    <script src="{% static 'js/view.js'%}"></script>
+    <script src="{% static 'js/error.js'%}"></script>
+
+</body>
+</html>

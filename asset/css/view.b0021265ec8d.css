@@ -1,0 +1,246 @@
+:root{
+    --border_label :5px solid rgba(73, 94, 156, 0.466);
+    --bor_bottom: 5px solid rgb(107 106 236 / 65%);
+    --col_top : #1e1b33f7;
+}
+*{
+    margin: 0%;
+    padding: 0%;
+}
+body{
+    height: 95vh;
+    width: 100%;
+    background-color: #2e294e;
+    font-family: 'Montserrat';
+    color: white;
+    
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 80px;
+    height: fit-content;    
+    align-items: center;
+    background-color: var(--col_top);
+    border-bottom: var(--bor_bottom);
+    position: fixed;
+    width: 100%;
+}
+
+.top a{
+    margin: 0 20px;
+}
+
+.add-notes button{
+    background-color: #2a97c6;
+    height: 40px;
+    width: 100px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+}
+.add-notes h4{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    height: 25px;
+    font-size: 1.2em;
+    padding: 5px;
+}
+.add-notes img{
+    display: none;
+    margin: auto;
+    cursor: pointer;
+}
+.section, .course{
+    margin: 25px;
+    font-size: 1.5em;
+    text-decoration: underline;
+}
+.section {
+    padding-top: 120px;
+    margin-top: 0;
+}
+
+.course{
+    text-align: center;
+}
+
+.all-files{
+    display: flex;
+    flex-direction: column;
+}
+.container-file{
+    min-height: 50px;
+    height: fit-content;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    background-color: #2a97c6;
+    display: flex;
+    flex-direction: row;
+}
+
+.text-box{
+    margin-left: 15px;
+    margin-right: 0;
+    padding: 5px;
+    font-size: 1.3em;
+    width: 75%;
+    border-right: var(--border_label);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.text-box h4{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.tools{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 25%;
+
+}
+
+.tools a{
+    
+    margin: 5px;
+}
+.tools img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tools img,.top img{
+    width: 32px;
+    height: 32px;
+}
+/* -------------- */
+
+#open-pdfedit-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+#open-pdfedit-form input[type='text']{
+    border: none;
+    color: black;
+    border-radius: 5px;
+    min-height: 30px;
+    height: fit-content;
+    width: 30%;
+    font-size: medium;
+    outline: none;
+    padding-left: 10px;
+    margin: 0 5px;
+}
+
+#open-pdfedit-form button {
+    font-family: 'Montserrat', sans-serif;
+    color:white;
+    padding: 5px;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #2997C6;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+  
+form button:hover{
+    background-color: rgb(61, 61, 161);
+  
+}
+
+#open-pdfedit-form input[type='text']::placeholder{
+    color:rgba(7, 7, 7, 0.411);
+    font-size: 15px;
+}
+
+#open-pdfedit-form input[type='text']:focus::placeholder{
+    color:transparent;
+}
+
+.empty_box{
+   
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.empty_box img{
+    width: 300px;
+    height: 300px;
+}
+.empty_box h4{
+    margin: 25px;
+    opacity: 50%;
+}
+
+
+@media only screen and (max-width: 900px)  {
+    .container-file{
+        width: 80%;
+    }
+
+    .text-box{
+        width: 90%;
+    }
+
+    .tools{
+        flex-direction: column;
+        width: 10%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .container-file{
+        width: 98%;
+        flex-direction: column;
+    }
+
+    .text-box{
+        width: 95%;
+        border: none;
+        border-bottom: var(--border_label);
+    }
+
+    .tools{
+        flex-direction: row;
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 450px)  {
+    .add-notes button{
+        width: 40px;
+        border-radius: 30%;
+    }
+    .add-notes img{
+        display: block;
+    }
+    .add-notes h4{
+        display: none;
+    }
+}
