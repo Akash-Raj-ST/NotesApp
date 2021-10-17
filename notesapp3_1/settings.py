@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
+from credentials import DB_USER_NAME,DB_PASSWORD,DJANGO_SECRET_KEY
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3&u40dl_sb9m73e0fyu-iej84f-in@)ukfk4av0l!xt23*anr_'
+SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = False
@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'notesapp3.1',
-        'USER':'postgres',
-        'PASSWORD':'akash1234',
+        'USER':DB_USER_NAME,
+        'PASSWORD':DB_PASSWORD,
         'HOST':'localhost'
     }
 }
