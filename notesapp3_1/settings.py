@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'notesapp3.1',
-        'USER':DB_USER_NAME,
         'PASSWORD':DB_PASSWORD,
+        'USER':DB_USER_NAME,
         'HOST':'localhost'
     }
 }
